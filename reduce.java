@@ -3,6 +3,7 @@ import java.io.*;
 import java.util.*;
 class reduce {
     public static void main (String [] args) throws IOException {
+        //Short Plan: We take the 3 highest and the 3 lowest points for both x and y, and we brute-force removing these points and checking the area. This makes sense, because removing a point that isn't the highest in any sort wouldn't affect the area, it would be inside the rectangle at all times. We brute-force by creating combinations yet ignoring the 4th lowest/highest coordinates so we can compute the area using those coordinates.
         BufferedReader f = new BufferedReader(new FileReader("reduce.in"));
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("reduce.out")));
         int loop = Integer.parseInt(f.readLine());
@@ -17,7 +18,7 @@ class reduce {
         
         coordinates = sortByCoordinate(coordinates, 'x');
         test = add3HighestLowest(test, coordinates, loop);
-        test.add(0, (coordinates.get(3))); //We add these to provide FOUR coordinates, in case if we remove the first three coordinates
+        test.add(0, (coordinates.get(3))); //We add these to provide FOUR coordinates, in case if we remove the first three coordinates. We plan to IGNORE the first four cases when we create the combinations, as they are reserved for the fourth lowest/highets coordinates which we do NOT touch
         test.add(1, (coordinates.get(loop - 1 - 3)));
         
         coordinates = sortByCoordinate(coordinates, 'y');

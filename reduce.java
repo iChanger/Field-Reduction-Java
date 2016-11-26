@@ -42,7 +42,7 @@ class reduce {
             Collections.sort(coordinates,new Comparator<Point>() {
                 
                 public int compare(Point o1, Point o2) {
-                    return Integer.compare(o1.getX(), o2.getX()); //Sorts the x-coordinates
+                    return Integer.compare(o1.getX(), o2.getX()); //Sorts by x-coordinates
                 }
             });
         }
@@ -50,7 +50,7 @@ class reduce {
             Collections.sort(coordinates,new Comparator<Point>() {
                 
                 public int compare(Point o1, Point o2) {
-                    return Integer.compare(o1.getY(), o2.getY()); //Sorts the x-coordinates
+                    return Integer.compare(o1.getY(), o2.getY()); //Sorts by y-coordinates
                 }
             });
         }
@@ -83,7 +83,7 @@ class reduce {
         area = (maxx - minx) * (maxy - miny);
         return area;
     }
-    static class Point{
+    static class Point{ //Custom class to allow us to store coordinates and sort it by the x or y coordinate
         private int x;
         private int y;
         public Point(int x, int y) {
@@ -101,5 +101,4 @@ class reduce {
             return y;
         }
     }
-    
 }

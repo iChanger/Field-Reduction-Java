@@ -9,7 +9,7 @@ class reduce {
         int loop = Integer.parseInt(f.readLine());
         long area = Long.MAX_VALUE;
         ArrayList<Point> coordinates = new ArrayList<Point>();
-        ArrayList<Point> test = new ArrayList<Point>();
+        ArrayList<Point> test = new ArrayList<Point>(); //This is the array that store all 4 highest and lowest points in the x and y  coordinates, so technically we should've made this an array with constant index to prevent confusion
         
         for(int i = 0; i < loop; i++){ //Add all of the points into a custom Point class
             StringTokenizer st = new StringTokenizer(f.readLine());
@@ -26,11 +26,11 @@ class reduce {
         test.add(2, (coordinates.get(3)));
         test.add(3, (coordinates.get(loop - 1 - 3)));
         
-        for(int i = 4; i < test.size(); i++){ //Generate all possible combinations of the three points to remove
+        for(int i = 4; i < test.size(); i++){ //Generate all possible combinations of the three points to remove. There will not be a lot because test.size() should be a fixed constant no matter how many cows we have
             //We start at 4, because we do not wish to create combinations for the fourth lowest/highest points, only the third lowest/highest points. We reserved the first four indexes for these points
             for(int j = i + 1; j < test.size(); j++){
                 for(int k = j + 1; k < test.size(); k++)
-                    area = Math.min(area, getArea(test, i, j, k));
+                    area = Math.min(area, getArea(test, i, j, k)); //For each single combination (which should be 20 as in 12C3 combinations), we compute the area for all cases and check it
             }
         }
         out.println(area);
@@ -73,7 +73,7 @@ class reduce {
         long miny = Long.MAX_VALUE;
         long maxy = Long.MIN_VALUE;
         for(int inc = 0; inc < test.size(); inc++){
-            if(inc == i || inc == j || inc == k)
+            if(inc == i || inc == j || inc == k) //These three points which are at indexes i, j, and k are skipped. This is derived from our combination code that selects combinations of 3 points to be omitted.
                 continue;
             minx = Math.min(minx, (long)test.get(inc).getX());
             maxx = Math.max(maxx, (long)test.get(inc).getX());
